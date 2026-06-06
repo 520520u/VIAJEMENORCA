@@ -1,5 +1,5 @@
 /* Menorca Guía — Service Worker offline */
-const CACHE = 'menorca-guia-v3';
+const CACHE = 'menorca-guia-v4';
 const APP_SHELL = [
   './',
   './index.html',
@@ -64,8 +64,12 @@ self.addEventListener('fetch', function (event) {
     return url.pathname.endsWith(p.replace('./', '')) || url.href.includes('index.html');
   })) {
     event.respondWith(
-      caches.match('./index.html').then(function (cached) {
-        return cached || fetch(req);
+      fetch(req).then(function (res) {
+        if (res && res.ok) {
+          var copy = res.clone();
+          caches.open(CACHE).then(function (c) { c.put('./index.html', copy); });
+        }
+        return res;
       }).catch(function () {
         return caches.match('./index.html');
       })
