@@ -875,6 +875,68 @@
       color: var(--sea-light);
       font-size: .8rem;
     }
+    .gastro-block {
+      margin-top: 2.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--coral);
+    }
+
+    .gastro-block > h3 {
+      font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+      font-size: 1.45rem;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+
+    .gastro-block > p {
+      color: var(--text-muted);
+      font-size: .95rem;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+
+    .gastro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .gastro-col h4 {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: .75rem;
+    }
+
+    .gastro-col ul {
+      list-style: none;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .gastro-col li {
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .gastro-col li:last-child { border-bottom: none; }
+
+    .gastro-col strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: .15rem;
+    }
+
+    .gastro-col span {
+      font-size: .85rem;
+      line-height: 1.45;
+    }
 
     /* ── OPTIMIZED ROUTE ── */
     .optimized {

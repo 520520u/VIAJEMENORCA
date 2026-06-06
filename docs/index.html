@@ -882,6 +882,70 @@
       font-size: .8rem;
     }
 
+    .gastro-block {
+      margin-top: 2.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--coral);
+    }
+
+    .gastro-block > h3 {
+      font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+      font-size: 1.45rem;
+      color: var(--text);
+      margin-bottom: .5rem;
+    }
+
+    .gastro-block > p {
+      color: var(--text-muted);
+      font-size: .95rem;
+      max-width: 680px;
+      margin-bottom: 1.5rem;
+    }
+
+    .gastro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .gastro-col h4 {
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: .75rem;
+    }
+
+    .gastro-col ul {
+      list-style: none;
+      font-size: .9rem;
+      color: var(--text-muted);
+    }
+
+    .gastro-col li {
+      padding: .35rem 0;
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .gastro-col li:last-child { border-bottom: none; }
+
+    .gastro-col strong {
+      display: block;
+      color: var(--text);
+      font-weight: 600;
+      margin-bottom: .15rem;
+    }
+
+    .gastro-col span {
+      font-size: .85rem;
+      line-height: 1.45;
+    }
+    }
+
     /* ── OPTIMIZED ROUTE ── */
     .optimized {
       background: linear-gradient(135deg, var(--pine) 0%, var(--sea) 100%);
@@ -1920,6 +1984,116 @@
           </ul>
         </div>
 
+      </div>
+
+      <div class="gastro-block">
+        <h3>🍽️ Gastronomía menorquina</h3>
+        <p>La isla come de mar y de campo: queso curado al sol, langosta en caldereta humeante y dulces de almendra en pastelerías centenarias. Esto es lo imprescindible — salado, dulce y de copa.</p>
+        <div class="gastro-grid">
+
+          <div class="gastro-col">
+            <h4>Salado</h4>
+            <ul>
+              <li>
+                <strong>Caldereta de langosta</strong>
+                <span>El plato rey en Fornells: langosta en sofrito de tomate, cebolla y laurel. Reserva con días de antelación.</span>
+              </li>
+              <li>
+                <strong>Queso Mahón-Menorca</strong>
+                <span>DOP con denominación propia. Pide curado o semicurado en mercados y queserías; sabor a mantequilla y sal marina.</span>
+              </li>
+              <li>
+                <strong>Sobrasada</strong>
+                <span>Embutido untable de cerdo y pimentón. En tostada con miel local es desayuno de campeones.</span>
+              </li>
+              <li>
+                <strong>Carn i xua</strong>
+                <span>Carne seca adobada típica de fiestas y verbenas. Salada, especiada, perfecta con un vino blanco frío.</span>
+              </li>
+              <li>
+                <strong>Trempó</strong>
+                <span>Ensalada menorquina de tomate, cebolla, pimiento y atún en aceite. Fresca, humilde y muy veraniega.</span>
+              </li>
+              <li>
+                <strong>Arroz caldoso y pescado del día</strong>
+                <span>En puertos de Maó y Ciutadella: lo que entró esta mañana en la lonja, sin carta traducida a cinco idiomas.</span>
+              </li>
+              <li>
+                <strong>Formatjades</strong>
+                <span>Empanadillas rellenas de queso, hierbas o pescado. Típicas en hornos de pueblo y mercados.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="gastro-col">
+            <h4>Dulce</h4>
+            <ul>
+              <li>
+                <strong>Ensaimada</strong>
+                <span>Hojaldre esponjoso impregnado de manteca. Clásica lisa o rellena de cabello de ángel; desayuno balear por excelencia.</span>
+              </li>
+              <li>
+                <strong>Flaó</strong>
+                <span>Tarta de requesón con hierbabuena, típica de Pascua pero encontrable todo el año en pastelerías.</span>
+              </li>
+              <li>
+                <strong>Carquinyols</strong>
+                <span>Galletas alargadas de almendra crujientes. Ideales con café después de comer o para llevar a la cala.</span>
+              </li>
+              <li>
+                <strong>Rubiols</strong>
+                <span>Empanadillas dulces rellenas de brossat (requesón), confitura o cabello de ángel.</span>
+              </li>
+              <li>
+                <strong>Amargos</strong>
+                <span>Galletas de almendra molidas con un toque amargo. Se mojan en licor o café; recuerdo de abuelas menorquinas.</span>
+              </li>
+              <li>
+                <strong>Bienmesabe</strong>
+                <span>Crema fría de almendra, yema y canela. Postre elegante que encontrarás en restaurantes con tradición.</span>
+              </li>
+              <li>
+                <strong>Coca bamba</strong>
+                <span>Pan dulce esponjoso espolvoreado de azúcar, herencia de la repostería insular.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="gastro-col">
+            <h4>Beber</h4>
+            <ul>
+              <li>
+                <strong>Pomada</strong>
+                <span>El cóctel de la isla: gin Xoriguer con limonada (o bitter lemon). Refrescante, cítrico, obligatorio al atardecer.</span>
+              </li>
+              <li>
+                <strong>Gin Xoriguer</strong>
+                <span>Ginebra artesanal de Maó, tradición británica del s. XVIII. Tómala sola con hielo o en pomada.</span>
+              </li>
+              <li>
+                <strong>Vino blanco balear</strong>
+                <span>Moscatel y Chardonnay de viñedos de Mallorca y Menorca. Perfecto con pescado y queso tierno.</span>
+              </li>
+              <li>
+                <strong>Horchata de chufa</strong>
+                <span>Bebida fría de chufa valenciana muy popular en verano; dulce, lechosa, sin alcohol.</span>
+              </li>
+              <li>
+                <strong>Café con leche en terraza</strong>
+                <span>Ritual matinal en plazas de Ciutadella o Maó antes de salir hacia las calas.</span>
+              </li>
+              <li>
+                <strong>Clara</strong>
+                <span>Cerveza con limón — la opción ligera en chiringuitos cuando el sol aprieta.</span>
+              </li>
+              <li>
+                <strong>Licor de hierbas</strong>
+                <span>Digestivo balear de hierbas maceradas. Un chupito después de la caldereta cierra la velada.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
       </div>
     </div>
   </section>
