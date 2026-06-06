@@ -17,17 +17,21 @@
     }
   };
 
-  /* GeoJSON [lng, lat] */
+  /* GeoJSON [lng, lat] — contorno aproximado de Menorca */
   var ISLAND = {
     type: 'Feature',
     properties: { name: 'Menorca' },
     geometry: {
       type: 'Polygon',
       coordinates: [[
-        [3.828, 40.008], [3.775, 39.968], [3.782, 39.912], [3.815, 39.868],
-        [3.895, 39.845], [4.018, 39.852], [4.145, 39.878], [4.268, 39.905],
-        [4.318, 39.948], [4.295, 40.018], [4.218, 40.078], [4.128, 40.098],
-        [4.028, 40.088], [3.928, 40.062], [3.868, 40.038], [3.828, 40.008]
+        [3.768, 39.975], [3.778, 39.920], [3.805, 39.875], [3.855, 39.838],
+        [3.920, 39.818], [4.000, 39.808], [4.080, 39.812], [4.155, 39.818],
+        [4.210, 39.812], [4.255, 39.802], [4.305, 39.815], [4.330, 39.845],
+        [4.325, 39.875], [4.295, 39.905], [4.265, 39.925], [4.220, 39.955],
+        [4.175, 39.985], [4.140, 40.015], [4.115, 40.045], [4.095, 40.075],
+        [4.110, 40.095], [4.125, 40.108], [4.080, 40.108], [4.015, 40.100],
+        [3.960, 40.090], [3.900, 40.065], [3.850, 40.035], [3.800, 40.000],
+        [3.768, 39.975]
       ]]
     }
   };
@@ -40,78 +44,98 @@
     { id: 'centro', label: 'Centro', color: COLORS.zones.centro, center: [4.050, 39.995] }
   ];
 
+  /* [lng, lat] */
   var POIS = {
-    mao: [4.2614, 39.8885],
-    ciutadella: [3.8380, 40.0024],
-    macarella: [3.7915, 39.9378],
-    macarelleta: [3.7850, 39.9405],
-    galdana: [3.9540, 39.9370],
-    santCliment: [4.0980, 39.8970],
-    mercadal: [4.0958, 39.9911],
-    toro: [4.0217, 40.0372],
-    ferreries: [4.0250, 39.9894],
-    mitjana: [3.9367, 39.9433],
-    pregonda: [4.0244, 40.0467],
-    fornells: [4.0092, 40.0558],
-    cavalleria: [4.0733, 40.0533],
-    calaPorter: [4.1317, 39.8533],
-    covaXoroi: [4.1350, 39.8450],
-    puntaPrima: [4.1967, 39.8283],
-    binissafuller: [4.2050, 39.8200],
-    binibequerVell: [4.2183, 39.8183],
-    calaBinibequer: [4.2217, 39.8150],
-    salgar: [4.2333, 39.8083]
+    mao: [4.2647, 39.8872],
+    ciutadella: [3.8383, 40.0021],
+    macarella: [3.7917, 39.9375],
+    macarelleta: [3.7845, 39.9408],
+    galdana: [3.9542, 39.9368],
+    santCliment: [4.1219, 39.8976],
+    alaior: [4.1050, 39.9300],
+    mercadal: [4.0911, 39.9915],
+    toro: [4.0190, 40.0356],
+    ferreries: [4.0212, 39.9876],
+    mitjana: [3.9365, 39.9439],
+    pregonda: [4.0112, 40.0623],
+    fornells: [4.0106, 40.0536],
+    cavalleria: [4.0747, 40.0556],
+    calaPorter: [4.1289, 39.8528],
+    covaXoroi: [4.1325, 39.8458],
+    puntaPrima: [4.2183, 39.8225],
+    binissafuller: [4.2108, 39.8189],
+    binibequerVell: [4.2250, 39.8195],
+    calaBinibequer: [4.2285, 39.8160],
+    salgar: [4.2420, 39.8085],
+    santLluis: [4.2580, 39.8880]
   };
 
   var DAYS = {
     day1: {
       color: COLORS.coral,
-      points: [
+      stops: [
         { ll: POIS.mao, name: 'Maó', n: 1 },
         { ll: POIS.santCliment, name: 'Sant Climent', n: 2 },
         { ll: POIS.galdana, name: 'Cala Galdana', n: 3 },
         { ll: POIS.macarella, name: 'Cala Macarella', n: 4 },
         { ll: POIS.macarelleta, name: 'Cala Macarelleta', n: 5 },
         { ll: POIS.ciutadella, name: 'Ciutadella', n: 6 }
+      ],
+      path: [
+        POIS.mao, POIS.santCliment, POIS.alaior, POIS.galdana,
+        POIS.macarella, POIS.macarelleta, POIS.ferreries, POIS.ciutadella
       ]
     },
     day2: {
       color: COLORS.sea,
-      points: [
+      stops: [
         { ll: POIS.mao, name: 'Maó', n: 1 },
         { ll: POIS.mercadal, name: 'Es Mercadal', n: 2 },
         { ll: POIS.pregonda, name: 'Cala Pregonda', n: 3 },
         { ll: POIS.fornells, name: 'Fornells', n: 4 },
         { ll: POIS.cavalleria, name: 'Cap de Cavalleria', n: 5 }
+      ],
+      path: [
+        POIS.mao, POIS.mercadal, POIS.pregonda, POIS.fornells, POIS.cavalleria
       ]
     },
     day3: {
       color: COLORS.pine,
-      points: [
+      stops: [
         { ll: POIS.mao, name: 'Maó', n: 1 },
         { ll: POIS.mercadal, name: 'Es Mercadal', n: 2 },
         { ll: POIS.toro, name: 'Monte Toro', n: 3 },
         { ll: POIS.ferreries, name: 'Ferreries', n: 4 },
         { ll: POIS.mitjana, name: 'Cala Mitjana', n: 5 }
+      ],
+      path: [
+        POIS.mao, POIS.mercadal, POIS.toro, POIS.ferreries, POIS.mitjana
       ]
     },
     day4: {
       color: '#6b5a8a',
-      points: [
+      stops: [
         { ll: POIS.calaPorter, name: 'Cala en Porter', n: 1 },
         { ll: POIS.covaXoroi, name: "Cova d'en Xoroi", n: 2 },
         { ll: POIS.puntaPrima, name: 'Punta Prima', n: 3 },
         { ll: POIS.binissafuller, name: 'Binissafúller', n: 4 }
+      ],
+      path: [
+        POIS.calaPorter, POIS.covaXoroi, POIS.puntaPrima, POIS.binissafuller
       ]
     },
     day5: {
       color: '#c4785a',
-      points: [
+      stops: [
         { ll: POIS.mao, name: 'Maó', n: 1 },
         { ll: POIS.binibequerVell, name: 'Binibèquer Vell', n: 2 },
         { ll: POIS.calaBinibequer, name: 'Cala Binibèquer', n: 3 },
         { ll: POIS.salgar, name: "S'Algar", n: 4 },
         { ll: POIS.mao, name: 'Maó (puerto)', n: 5 }
+      ],
+      path: [
+        POIS.mao, POIS.santLluis, POIS.binibequerVell, POIS.calaBinibequer,
+        POIS.salgar, POIS.santLluis, POIS.mao
       ]
     }
   };
@@ -154,21 +178,33 @@
     }).addTo(map);
   }
 
-  function addRoute(map, points, color) {
-    var latlngs = points.map(function (p) { return [p.ll[1], p.ll[0]]; });
+  function pathToLatLngs(path) {
+    return path.map(function (ll) { return [ll[1], ll[0]]; });
+  }
+
+  function addRoute(map, day, color) {
+    var routeColor = color || day.color;
+    var latlngs = pathToLatLngs(day.path);
+
     L.polyline(latlngs, {
-      color: color,
+      color: routeColor,
       weight: 4,
       opacity: 0.85,
       dashArray: '8 6',
       lineCap: 'round'
     }).addTo(map);
-    points.forEach(function (p) {
-      L.marker([p.ll[1], p.ll[0]], { icon: pinIcon(p.n, color) })
+
+    day.stops.forEach(function (p) {
+      L.marker([p.ll[1], p.ll[0]], { icon: pinIcon(p.n, routeColor) })
         .bindPopup('<strong>' + p.n + '.</strong> ' + p.name)
         .addTo(map);
     });
-    map.fitBounds(L.latLngBounds(latlngs), { padding: [36, 36], maxZoom: 12 });
+
+    var bounds = L.latLngBounds(latlngs);
+    day.stops.forEach(function (p) {
+      bounds.extend([p.ll[1], p.ll[0]]);
+    });
+    map.fitBounds(bounds, { padding: [36, 36], maxZoom: 12 });
   }
 
   function initOverview() {
@@ -224,7 +260,7 @@
       var day = DAYS[entry.key];
       if (!day) return;
 
-      var latlngs = day.points.map(function (p) { return [p.ll[1], p.ll[0]]; });
+      var latlngs = pathToLatLngs(day.path);
       allLatLngs = allLatLngs.concat(latlngs);
 
       L.polyline(latlngs, {
@@ -235,7 +271,7 @@
         lineCap: 'round'
       }).addTo(map);
 
-      day.points.forEach(function (p) {
+      day.stops.forEach(function (p) {
         L.marker([p.ll[1], p.ll[0]], { icon: pinIcon(p.n, entry.color) })
           .bindPopup('<strong>' + entry.label + '</strong><br>' + p.n + '. ' + p.name)
           .addTo(map);
@@ -257,7 +293,7 @@
     var day = DAYS[dayKey];
     var map = L.map(el, baseMapOptions());
     addIslandLayer(map);
-    addRoute(map, day.points, day.color);
+    addRoute(map, day);
 
     maps[id] = map;
     setTimeout(function () { map.invalidateSize(); }, 120);
