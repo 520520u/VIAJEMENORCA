@@ -6,12 +6,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no">
-  <meta name="theme-color" content="#1a6b7c">
-  <meta name="apple-mobile-web-app-title" content="Menorca">
-  <meta name="mobile-web-app-capable" content="yes">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <title>Menorca · Guía Premium 5 Días · Junio</title>
   <style>
     :root {
@@ -1736,12 +1730,12 @@
 
         <div class="tip-card">
           <h3>📱 Usar offline en iOS</h3>
-          <p>Versión PWA en GitHub Pages. Para instalar como app:</p>
+          <p>Los mapas Leaflet funcionan sin internet (sin tiles externos). Para llevar la guía completa en el iPhone:</p>
           <ul>
-            <li>Abre <strong>520520u.github.io/VIAJEMENORCA</strong> en Safari</li>
-            <li>Compartir → «Añadir a pantalla de inicio»</li>
-            <li>Visita con WiFi una vez: el Service Worker cachea textos e imágenes</li>
-            <li>Mapas Leaflet siempre offline; Google Maps requiere red</li>
+            <li>Guarda el .html en Archivos (iCloud o local)</li>
+            <li>Ábrelo con Safari → Compartir → «Añadir a pantalla de inicio»</li>
+            <li>Los mapas interactivos cargan al hacer scroll (sin datos móviles)</li>
+            <li>Enlaces a Google Maps requieren conexión; mapas embebidos no</li>
           </ul>
         </div>
 
@@ -1809,13 +1803,8 @@
   <!-- FOOTER -->
   <footer>
     <em>Menorca te espera en calma 🌿🌊☀️</em>
-    <p>Guía premium · Junio · PWA offline · Mapas Leaflet · Imágenes cacheadas tras 1ª visita</p>
+    <p>Guía premium · Junio · Slow travel & naturaleza<br>Mapas Leaflet offline · Imágenes vía Unsplash (requieren red la 1ª vez)</p>
   </footer>
-
-  <div id="pwa-install" hidden style="position:fixed;bottom:1rem;left:1rem;right:1rem;max-width:420px;margin:0 auto;padding:1rem 1.25rem;background:#1a6b7c;color:#fff;border-radius:14px;box-shadow:0 8px 32px rgba(0,0,0,.2);z-index:9999;font-size:.9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem">
-    <span>📲 Instala la guía como app en tu pantalla de inicio</span>
-    <button id="pwa-install-btn" type="button" style="flex-shrink:0;padding:.5rem 1rem;background:#f5f0e8;color:#1a6b7c;border:none;border-radius:100px;font-weight:600;cursor:pointer">Instalar</button>
-  </div>
 
 <script>
 /* Leaflet 1.9.4 — embebido para uso offline iOS */
@@ -2112,35 +2101,5 @@
 })();
 
 </script>
-
-<script>
-(function () {
-  'use strict';
-  if (!('serviceWorker' in navigator)) return;
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(function () {});
-  });
-  var deferredPrompt, banner = document.getElementById('pwa-install'), btn = document.getElementById('pwa-install-btn');
-  if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-    if (banner) banner.hidden = true; return;
-  }
-  window.addEventListener('beforeinstallprompt', function (e) {
-    e.preventDefault(); deferredPrompt = e; if (banner) banner.hidden = false;
-  });
-  if (btn) btn.addEventListener('click', function () {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.finally(function () { deferredPrompt = null; if (banner) banner.hidden = true; });
-      return;
-    }
-    alert('En iPhone/iPad: pulsa Compartir en Safari y elige «Añadir a pantalla de inicio».');
-  });
-  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (isIOS && banner) setTimeout(function () {
-    if (!window.matchMedia('(display-mode: standalone)').matches) banner.hidden = false;
-  }, 2500);
-})();
-</script>
-
 </body>
 </html>
