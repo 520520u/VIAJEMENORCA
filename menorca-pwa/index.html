@@ -1055,6 +1055,19 @@
     }
 
     .leaflet-map--overview { height: 420px; }
+    .leaflet-map--fullroute { height: 500px; }
+
+    .map-wrap--fullroute { margin-bottom: 1.25rem; }
+
+    .route-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem 1.25rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+
+    .route-legend span { display: flex; align-items: center; gap: .4rem; }
 
     .map-caption {
       font-size: .78rem;
@@ -1087,6 +1100,7 @@
     @media (max-width: 640px) {
       .leaflet-map { height: 260px; }
       .leaflet-map--overview { height: 300px; }
+      .leaflet-map--fullroute { height: 320px; }
       section { padding: 3.5rem 0; }
       .hero-content { padding: 3rem 1.25rem 4rem; }
       .day-header, .day-body { padding: 1.25rem; }
@@ -1106,6 +1120,7 @@
     <nav class="site-nav" id="site-nav" aria-label="Secciones de la guía">
       <ul>
         <li><a href="#intro">Introducción</a></li>
+        <li><a href="#ruta-completa">Mapa ruta</a></li>
         <li><a href="#itinerario">Itinerario</a></li>
         <li><a href="#alojamiento">Alojamiento</a></li>
         <li><a href="#restaurantes">Restaurantes</a></li>
@@ -1154,6 +1169,25 @@
           <h3>Naturaleza primero</h3>
           <p>Reserva de la Biosfera desde 1993. Olores a pino y sal, paredes de pedra seca cruzando el campo, calas donde el único sonido es el chapoteo. No esperes Caribe — espera Mediterráneo auténtico: roca, algas en la orilla y una luz dorada que convierte todo en postal sobre las seis de la tarde.</p>
         </div>
+      </div>
+  <!-- MAPA RUTA COMPLETA -->
+  <section id="ruta-completa">
+    <div class="container">
+      <p class="section-label">Visión global</p>
+      <h2 class="section-title">Mapa de la ruta completa</h2>
+      <p class="section-intro">Los cinco días en un solo mapa interactivo. Cada color es un día de ruta; toca los marcadores numerados para ver cada parada. Funciona offline en iPhone y iPad.</p>
+
+      <div class="map-wrap map-wrap--fullroute">
+        <div id="map-full-route" class="leaflet-map leaflet-map--fullroute" role="img" aria-label="Mapa interactivo de la ruta completa de 5 días en Menorca"></div>
+        <p class="map-caption">🗺️ ~220 km totales · Pellizca para zoom · Arrastra para mover</p>
+      </div>
+
+      <div class="route-legend">
+        <span><span class="legend-dot" style="background:#c4785a"></span> D1 · Costa sur — Macarella & Ciutadella</span>
+        <span><span class="legend-dot" style="background:#1a6b7c"></span> D2 · Norte — Pregonda & Fornells</span>
+        <span><span class="legend-dot" style="background:#5a7d65"></span> D3 · Interior — Monte Toro & Mitjana</span>
+        <span><span class="legend-dot" style="background:#6b5a8a"></span> D4 · Camí de Cavalls — Cala en Porter</span>
+        <span><span class="legend-dot" style="background:#2d8fa3"></span> D5 · Sureste — Binibèquer & Maó</span>
       </div>
     </div>
   </section>
@@ -2237,6 +2271,53 @@
     setTimeout(function () { map.invalidateSize(); }, 120);
   }
 
+  var FULL_ROUTE = [
+    { key: 'day1', label: 'D1 · Costa sur', color: COLORS.coral },
+    { key: 'day2', label: 'D2 · Norte', color: COLORS.sea },
+    { key: 'day3', label: 'D3 · Interior', color: COLORS.pine },
+    { key: 'day4', label: 'D4 · Camí de Cavalls', color: '#6b5a8a' },
+    { key: 'day5', label: 'D5 · Sureste', color: COLORS.route }
+  ];
+
+  function initFullRoute() {
+    var el = document.getElementById('map-full-route');
+    if (!el || maps.fullRoute) return;
+
+    var map = L.map(el, baseMapOptions()).setView([39.97, 4.05], 10);
+    addIslandLayer(map);
+
+    var allLatLngs = [];
+
+    FULL_ROUTE.forEach(function (entry) {
+      var day = DAYS[entry.key];
+      if (!day) return;
+
+      var latlngs = day.points.map(function (p) { return [p.ll[1], p.ll[0]]; });
+      allLatLngs = allLatLngs.concat(latlngs);
+
+      L.polyline(latlngs, {
+        color: entry.color,
+        weight: 4,
+        opacity: 0.88,
+        dashArray: '8 6',
+        lineCap: 'round'
+      }).addTo(map);
+
+      day.points.forEach(function (p) {
+        L.marker([p.ll[1], p.ll[0]], { icon: pinIcon(p.n, entry.color) })
+          .bindPopup('<strong>' + entry.label + '</strong><br>' + p.n + '. ' + p.name)
+          .addTo(map);
+      });
+    });
+
+    if (allLatLngs.length) {
+      map.fitBounds(L.latLngBounds(allLatLngs), { padding: [44, 44], maxZoom: 11 });
+    }
+
+    maps.fullRoute = map;
+    setTimeout(function () { map.invalidateSize(); }, 120);
+  }
+
   function initDayMap(id, dayKey) {
     var el = document.getElementById(id);
     if (!el || maps[id]) return;
@@ -2257,6 +2338,8 @@
   function bootMap(entry) {
     if (entry.id === 'map-overview') {
       initOverview();
+    } else if (entry.id === 'map-full-route') {
+      initFullRoute();
     } else {
       initDayMap(entry.id, entry.dayKey);
     }
@@ -2287,6 +2370,7 @@
   }
 
   registerMap('map-overview', null);
+  registerMap('map-full-route', null);
   registerMap('map-day1', 'day1');
   registerMap('map-day2', 'day2');
   registerMap('map-day3', 'day3');
