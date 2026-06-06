@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#1a6b7c"/>
+  <circle cx="256" cy="256" r="180" fill="#e8f4f6"/>
+  <ellipse cx="256" cy="248" rx="72" ry="88" fill="#5a7d65"/>
+  <text x="256" y="420" text-anchor="middle" font-family="Georgia,serif" font-size="52" fill="#f5f0e8">M</text>
+</svg>
