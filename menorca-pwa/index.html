@@ -362,7 +362,7 @@
     /* ── CARDS ── */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
       gap: 1.75rem;
     }
 
@@ -430,10 +430,16 @@
     .day-card {
       background: var(--white);
       border-radius: var(--radius);
-      margin-bottom: 2rem;
       box-shadow: var(--shadow);
       border: 1px solid var(--sand-dark);
       overflow: hidden;
+    }
+
+    .day-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      width: 100%;
     }
 
     section#itinerario { background: var(--sand); }
@@ -536,8 +542,9 @@
 
     .day-details {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
       gap: 1.5rem;
+      width: 100%;
     }
 
     .day-detail h4 {
@@ -610,8 +617,9 @@
 
     .spot-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 1.25rem;
+      width: 100%;
     }
 
     .spot-item {
@@ -1078,8 +1086,14 @@
     .route-day-panel{display:none}
     .route-day-panel.is-active{display:block}
     .route-day-panel .gmap-embed{width:100%;height:420px;border:0;display:block}
-    .spot-img{width:96px;height:76px;flex-shrink:0;border-radius:8px;border:none;cursor:pointer;padding:0;overflow:hidden}
+    .spot-item{display:flex;flex-direction:column;width:100%;min-width:0}
+    .spot-img{width:100%;height:148px;flex-shrink:0;border-radius:var(--radius-sm) var(--radius-sm) 0 0;border:none;cursor:pointer;padding:0;overflow:hidden;background-size:cover;background-position:center}
     .spot-img img{width:100%;height:100%;object-fit:cover;display:block}
+    .spot-body{flex:1;min-width:0}
+    @media(min-width:641px){
+      .spot-item{flex-direction:row;align-items:flex-start;gap:.75rem}
+      .spot-img{width:96px;height:76px;border-radius:8px}
+    }
     .lightbox{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:1rem}
     .lightbox.is-open{display:flex}
     .lightbox-inner{max-width:min(96vw,1100px);width:100%;display:flex;flex-direction:column;align-items:center;position:relative}
@@ -1091,12 +1105,8 @@
     @media(max-width:640px){
       .gmap-only .gmap-embed,.route-day-panel .gmap-embed{height:min(52vw,340px);min-height:260px}
       .gallery-thumb img{height:118px;min-width:42vw;max-width:none;width:42vw}
-      .spot-list{grid-template-columns:1fr}
-      .spot-item{display:block}
-      .spot-img{width:100%!important;height:148px!important;border-radius:var(--radius-sm) var(--radius-sm) 0 0}
       .route-day-tab{font-size:.68rem;padding:.55rem .2rem;min-width:3.4rem}
       .lightbox-cap{max-width:none}
-      #itinerario .day-body .map-wrap,#itinerario .day-body .day-gallery{width:100%;max-width:none;margin-left:0;margin-right:0}
     }
 
     /* ── RESPONSIVE ── */
@@ -1134,8 +1144,6 @@
       .card-grid,
       .restaurant-grid,
       .day-stats,
-      .day-details,
-      .spot-list,
       .gastro-grid {
         grid-template-columns: 1fr;
       }
@@ -1148,14 +1156,56 @@
         padding: 1.25rem;
       }
 
+      #itinerario .day-cards {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2rem;
+        width: 100%;
+      }
+
       #itinerario .day-card {
         width: 100%;
         max-width: none;
-        margin-left: 0;
-        margin-right: 0;
-        border-radius: var(--radius);
-        border-left: 1px solid var(--sand-dark);
-        border-right: 1px solid var(--sand-dark);
+        min-width: 0;
+        margin: 0;
+        overflow: visible;
+      }
+
+      #itinerario .day-body,
+      #itinerario .day-header,
+      #itinerario .day-details,
+      #itinerario .day-detail,
+      #itinerario .day-detail--spots,
+      #itinerario .spot-list,
+      #itinerario .spot-item,
+      #itinerario .route-bar,
+      #itinerario .day-teaser,
+      #itinerario .day-gallery,
+      #itinerario .map-wrap {
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      #itinerario .day-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      #itinerario .day-detail--spots {
+        grid-column: auto;
+      }
+
+      #itinerario .spot-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      #itinerario .day-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .gastro-block { padding: 1.35rem 1.25rem; }
@@ -1264,6 +1314,7 @@
       <h2 class="section-title">Itinerario 5 días</h2>
       <p class="section-intro">Cada día incluye no solo la ruta, sino qué verás, olerás y sentirás al llegar — con honestidad: dónde habrá gente, dónde no, y qué merece realmente la pena.</p>
 
+      <div class="day-cards">
       <!-- DÍA 1 -->
       <article class="day-card">
         <div class="day-header">
@@ -1744,6 +1795,7 @@
         </div>
       </article>
 
+      </div>
     </div>
   </section>
 
