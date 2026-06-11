@@ -20,7 +20,7 @@ def main():
         shutil.copytree(src_img, dst)
     sw = TARGET / "sw.js"
     if sw.exists():
-        sw.write_text(sw.read_text(encoding="utf-8").replace("menorca-guia-v8", "menorca-guia-v9"), encoding="utf-8")
+        sw.write_text(sw.read_text(encoding="utf-8").replace("menorca-guia-v9", "menorca-guia-v10"), encoding="utf-8")
     print("PWA:", TARGET)
 
 
