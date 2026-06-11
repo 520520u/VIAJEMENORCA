@@ -1088,17 +1088,88 @@
     .lightbox-close{position:absolute;top:-2.5rem;right:0;width:2.5rem;height:2.5rem;border:none;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:1.4rem;cursor:pointer}
     .lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);width:2.75rem;height:2.75rem;border:none;border-radius:50%;background:rgba(255,255,255,.2);color:#fff;font-size:1.5rem;cursor:pointer}
     .lightbox-prev{left:.25rem}.lightbox-next{right:.25rem}
-    @media(max-width:640px){.gmap-only .gmap-embed,.route-day-panel .gmap-embed{height:280px}.gallery-thumb img{height:110px;min-width:160px}}
+    @media(max-width:640px){
+      .gmap-only .gmap-embed,.route-day-panel .gmap-embed{height:min(52vw,340px);min-height:260px}
+      .gallery-thumb img{height:118px;min-width:42vw;max-width:none;width:42vw}
+      .spot-list{grid-template-columns:1fr}
+      .spot-item{display:block}
+      .spot-img{width:100%!important;height:148px!important;border-radius:var(--radius-sm) var(--radius-sm) 0 0}
+      .route-day-tab{font-size:.68rem;padding:.55rem .2rem;min-width:3.4rem}
+      .lightbox-cap{max-width:none}
+      #itinerario .day-body .map-wrap,#itinerario .day-body .day-gallery{width:100%;max-width:none;margin-left:0;margin-right:0}
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
+      html { -webkit-text-size-adjust: 100%; }
+
+      body { overflow-x: hidden; }
+
+      .container {
+        max-width: 100%;
+        padding-left: max(0.65rem, env(safe-area-inset-left));
+        padding-right: max(0.65rem, env(safe-area-inset-right));
+      }
+
+      .site-header {
+        padding-left: max(0.75rem, env(safe-area-inset-left));
+        padding-right: max(0.75rem, env(safe-area-inset-right));
+      }
+
+      section { padding: 2.75rem 0; }
+
+      .hero-content {
+        padding: 2.75rem max(0.85rem, env(safe-area-inset-left)) 3.5rem max(0.85rem, env(safe-area-inset-right));
+      }
+
+      .hero-sub { max-width: none; }
+
+      .section-intro,
+      .optimized p,
+      .gastro-block > p {
+        max-width: none;
+      }
+
+      .intro-grid,
+      .card-grid,
+      .restaurant-grid,
+      .day-stats,
+      .day-details,
+      .spot-list,
+      .gastro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-card,
+      .card-body,
+      .restaurant-card,
+      .day-header,
+      .day-body {
+        padding: 1.25rem;
+      }
+
+      #itinerario .day-card {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: var(--radius);
+        border-left: 1px solid var(--sand-dark);
+        border-right: 1px solid var(--sand-dark);
+      }
+
+      .gastro-block { padding: 1.35rem 1.25rem; }
+
+      .optimized { padding: 2rem 1.25rem; }
+
+      footer {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+      }
+
       .leaflet-map { height: 260px; }
       .leaflet-map--overview { height: 300px; }
       .leaflet-map--fullroute { height: 320px; }
-      section { padding: 3.5rem 0; }
-      .hero-content { padding: 3rem 1.25rem 4rem; }
-      .day-header, .day-body { padding: 1.25rem; }
-      .optimized { padding: 2rem 1.25rem; }
       .island-map { aspect-ratio: 1; max-width: 100%; }
       .zone-este, .zone-oeste { width: 38%; font-size: .75rem; }
       .zone-norte, .zone-sur { width: 70%; }
@@ -1164,6 +1235,9 @@
           <p>Reserva de la Biosfera desde 1993. Olores a pino y sal, paredes de pedra seca cruzando el campo, calas donde el único sonido es el chapoteo. No esperes Caribe — espera Mediterráneo auténtico: roca, algas en la orilla y una luz dorada que convierte todo en postal sobre las seis de la tarde.</p>
         </div>
       </div>
+    </div>
+  </section>
+
   <!-- MAPA RUTA COMPLETA -->
   <section id="ruta-completa">
     <div class="container">
@@ -1258,23 +1332,23 @@
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day1" data-index="0" aria-label="Ver fotos de Cala Macarelleta"><img src="https://images.unsplash.com/photo-1747752419876-50b8d12d68f2?w=800&q=80" alt="Cala Macarelleta — agua turquesa y rocas de piedra" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Macarelleta</strong>
                     <span class="spot-desc">La joya escondida: solo a pie, entre pinos, con agua tan transparente que ves el fondo a seis metros. Arena blanca fina, olor a sal y resina. En junio aún puedes tenerla casi para ti antes de las 10h; después llegan familias con neveras — sin megafonía, pero tampoco soledad absoluta.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day1" data-index="2" aria-label="Ver fotos de Cala Macarella"><img src="https://images.unsplash.com/photo-1651918858137-d3d484d35854?w=800&q=80" alt="Cala Macarella — la cala icónica del sur" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Macarella</strong>
                     <span class="spot-desc">La postal oficial: dos entradas de mar unidas por roca, aguas turquesas y pinos hasta el agua. Es tan bonita que duele compartirla — y la compartirás a mediodía. Chiringuito en temporada, parking de pago. Vale cada minuto de madrugón.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day1" data-index="4" aria-label="Ver fotos de Cala Galdana"><img src="https://images.unsplash.com/photo-1592634186523-484938bc3c22?w=800&q=80" alt="Cala Galdana — bahía amplia entre pinos" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Galdana</strong>
                     <span class="spot-desc">La cala «cómoda»: arena amplia, aguas poco profundas, hoteles discretos al fondo. Menos mágica que Macarella, más familiar. Perfecta para un café con vistas o si viajas con peques. Olor a crema solar y algas en la orilla.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day1" data-index="6" aria-label="Ver fotos de Ciutadella"><img src="https://images.unsplash.com/photo-1663790161767-cba32a06bbfd?w=800&q=80" alt="Ciutadella — calles medievales y puerto" loading="lazy"></button><div class="spot-body">
                     <strong>Ciutadella</strong>
                     <span class="spot-desc">La ex capital: calles medievales estrechas, palacios ocre, plazas con sombra y el puerto al atardecer tiñéndose de naranja. Olor a fritura de pescado y tabaco de pipa en los bares del Born. Turismo sí, pero con alma — especialmente cuando el sol baja y los locales salen.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
               </ul>
             </div>
           </div>
@@ -1354,23 +1428,23 @@
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day2" data-index="0" aria-label="Ver fotos de Cala Pregonda"><img src="https://images.unsplash.com/photo-1692285629272-a4fb26a2bcc5?w=800&q=80" alt="Cala Pregonda — arena rojiza e isla central" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Pregonda</strong>
                     <span class="spot-desc">Paisaje casi lunar: arena rojiza, agua verde esmeralda y una isla rocosa en el centro que puedes nadar hasta ella. 25 minutos a pie desde el parking — el sendero huele a tomillo y sal. Pocos servicios, cero chiringuito: lleva agua. Una de las calas que recuerdas años después.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day2" data-index="3" aria-label="Ver fotos de Fornells"><img src="https://images.unsplash.com/photo-1670343587351-e5f98dfbea3e?w=800&q=80" alt="Fornells — pueblo marinero y caldereta" loading="lazy"></button><div class="spot-body">
                     <strong>Fornells</strong>
                     <span class="spot-desc">Pueblo de pescadores de verdad: fachadas blancas, redes secándose, olor a langosta y mantequilla de caldereta flotando en el aire del puerto. No es pintoresco de postal — es un pueblo que vive del mar. Reserva restaurante o te quedas con las ganas (y el hambre).</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day2" data-index="5" aria-label="Ver fotos de Cap de Cavalleria"><img src="https://images.unsplash.com/photo-1544572650-7e8d887baab6?w=800&q=80" alt="Cap de Cavalleria — faro sobre acantilados" loading="lazy"></button><div class="spot-body">
                     <strong>Cap de Cavalleria</strong>
                     <span class="spot-desc">El punto más septentrional: acantilados de 40 m, viento que te empuja, olor a sal brava y un faro solitario contra el horizonte. No es playa — es drama puro. Atardecer aquí es ver el cielo ponerse fuego mientras el mar golpea la roca negra.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day2" data-index="8" aria-label="Ver fotos de Es Mercadal"><img src="https://images.unsplash.com/photo-1564087558267-9e36fae557b7?w=800&q=80" alt="Es Mercadal — corazón rural de la isla" loading="lazy"></button><div class="spot-body">
                     <strong>Es Mercadal</strong>
                     <span class="spot-desc">Parada rápida si cae jueves: mercadillo artesanal con quesos, sobrasada y cerámica. Pueblo tranquilo de calles rectas y plazas con sombra — el corazón geográfico donde todo parece a 15 minutos.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
               </ul>
             </div>
           </div>
@@ -1450,23 +1524,23 @@
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day3" data-index="0" aria-label="Ver fotos de Monte Toro"><img src="https://images.unsplash.com/photo-1458628370679-1f7b2f6bd22b?w=800&q=80" alt="Monte Toro — punto más alto de Menorca" loading="lazy"></button><div class="spot-body">
                     <strong>Monte Toro</strong>
                     <span class="spot-desc">El techo de Menorca: monasterio franciscano, vacas pastando cerca y una vista que abarca toda la isla en un solo giro. Viento fresco incluso en junio, olor a hierba y campanas lejanas. No es excursión dura — es subir en coche y caminar 5 minutos hasta el mirador. Te orienta para el resto del viaje.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day3" data-index="3" aria-label="Ver fotos de Es Mercadal"><img src="https://images.unsplash.com/photo-1564087558267-9e36fae557b7?w=800&q=80" alt="Es Mercadal — corazón rural de la isla" loading="lazy"></button><div class="spot-body">
                     <strong>Es Mercadal</strong>
                     <span class="spot-desc">Pueblo de calles rectas y plazas con sombra de plataneros. Olor a pan recién horneado y café con leche en terraza. El jueves, artesanos con quesos que huelen a cueva y sobrasada colgando. Sin glamour — autenticidad de mercado de pueblo.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day3" data-index="5" aria-label="Ver fotos de Ferreries"><img src="https://images.unsplash.com/photo-1568330265107-7dd078486284?w=800&q=80" alt="Ferreries — pueblo blanco del interior" loading="lazy"></button><div class="spot-body">
                     <strong>Ferreries</strong>
                     <span class="spot-desc">Cascada de casas blancas entre colinas verdes. Iglesia con campanario, talleres de artesanía y el silencio de pueblo que no vive del turismo de masas. Ideal para perderse 30 minutos sin mapa y tomar un café donde solo hay locales.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day3" data-index="7" aria-label="Ver fotos de Cala Mitjana"><img src="https://images.unsplash.com/photo-1693910771501-f083fe7abd85?w=800&q=80" alt="Cala Mitjana — cala virgen entre acantilados" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Mitjana</strong>
                     <span class="spot-desc">Bosque de pinos hasta la arena: bajas por escaleras entre troncos, el suelo de agujas crujientes bajo los pies, y de repente — agua color botella entre acantilados bajos. Menos famosa que Macarella, más íntima. Parking limitado; llega antes de las 17h en junio.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
               </ul>
             </div>
           </div>
@@ -1546,23 +1620,23 @@
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day4" data-index="0" aria-label="Ver fotos de Cala en Porter"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Cala en Porter — acceso al Camí de Cavalls" loading="lazy"></button><div class="spot-body">
                     <strong>Cala en Porter</strong>
                     <span class="spot-desc">Un acantilado de 90 m cayendo al mar color zafiro — uno de los más altos de Menorca. No hay playa accesible desde arriba; la emoción es el vértigo y la foto. Olor a sal y viento constante. El sendero del Camí de Cavalls pasa justo por el borde — cuidado con el móvil.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day4" data-index="2" aria-label="Ver fotos de Cova d'en Xoroi"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="Cova d'en Xoroi — discoteca en la roca" loading="lazy"></button><div class="spot-body">
                     <strong>Cova d'en Xoroi</strong>
                     <span class="spot-desc">Cuevas excavadas en acantilado con escaleras bajando al mar. De día: bar restaurante con vistas de locura, olor a mojito y sal. De noche (evítalo en esta guía): discoteca. De día es parada para un zumo con el pie colgando sobre el agua — irreal pero turístico.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day4" data-index="4" aria-label="Ver fotos de Punta Prima"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80" alt="Punta Prima — playa familiar del sureste" loading="lazy"></button><div class="spot-body">
                     <strong>Punta Prima</strong>
                     <span class="spot-desc">Pueblo costero sin pretensiones: casas bajas, pescadores arreglando redes, olor a sardina y detergente de ropa tendida. Playa pequeña y familiar. No es para Instagram — es para respirar después de caminar.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day4" data-index="6" aria-label="Ver fotos de Cala Binissafúller"><img src="https://images.unsplash.com/photo-1592634378917-49e37742ee21?w=800&q=80" alt="Cala Binissafúller — cala pequeña y tranquila" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Binissafúller</strong>
                     <span class="spot-desc">Cala pequeña entre rocas calizas blancas, agua tan clara que ves los peces sin snorkel. Menos conocida que las del sur, más selecta. Chiringuito modesto en verano. Sensación de haber encontrado algo — aunque en junio compartas con yates pequeños fondeados.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
               </ul>
             </div>
           </div>
@@ -1642,23 +1716,23 @@
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day5" data-index="0" aria-label="Ver fotos de Binibèquer Vell"><img src="https://images.unsplash.com/photo-1598345042882-4448d0ed51de?w=800&q=80" alt="Binibèquer Vell — laberinto blanco junto al mar" loading="lazy"></button><div class="spot-body">
                     <strong>Binibèquer Vell</strong>
                     <span class="spot-desc">Pueblo de pescadores reconstruido en los 60 con un encanto de postal: casas blancas con puertas azules, calles estrechas sin coches, barcas varadas y olor a pintura fresca y sal. Pequeño y muy fotogénico — llega antes de las 10h para evitar grupos de excursiones.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day5" data-index="3" aria-label="Ver fotos de Cala Binibèquer"><img src="https://images.unsplash.com/photo-1592634214635-d4ae889d9621?w=800&q=80" alt="Cala Binibèquer — cala de pescadores" loading="lazy"></button><div class="spot-body">
                     <strong>Cala Binibèquer</strong>
                     <span class="spot-desc">Cala amplia y poco profunda, aguas tranquilas color turquesa pálido, ideal para un baño relajado sin adrenalina. Arena fina, familias con sombrillas, olor a crema solar. No es virgen — es cómoda y bonita, perfecta para despedirte del mar sin esfuerzo.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day5" data-index="5" aria-label="Ver fotos de S'Algar & Cales Coves"><img src="https://images.unsplash.com/photo-1747752419876-50b8d12d68f2?w=800&q=80" alt="S'Algar — aguas cristalinas del sureste" loading="lazy"></button><div class="spot-body">
                     <strong>S'Algar & Cales Coves</strong>
                     <span class="spot-desc">Costa rocosa con calas diminutas y agua cristalina sobre praderas de posidonia — verde oscuro bajo el agua clara. Snorkel sencillo entre peces plateados. Algo más concurrido que el norte, pero el fondo marino compensa. Olor a algas y sal en las rocas calientes.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
                                 <li class="spot-item"><button type="button" class="spot-img" data-gallery="day5" data-index="7" aria-label="Ver fotos de Maó (puerto)"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80" alt="Maó — uno de los puertos naturales más grandes del mundo" loading="lazy"></button><div class="spot-body">
                     <strong>Maó (puerto)</strong>
                     <span class="spot-desc">5 km de puerto natural bordeados de cafés, yates y casas ocre reflejadas en el agua. Olor a café, diesel de barcos y pescado frito al atardecer. Paseo lento por el Moll de Llevant mientras el cielo se pone rosa — la despedida perfecta antes del vuelo.</span>
-                  </div>
-                </li></li>
+                  </div></li>
+                </li>
               </ul>
             </div>
           </div>

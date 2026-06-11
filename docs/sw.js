@@ -1,5 +1,5 @@
 /* Menorca Guía — Service Worker offline */
-const CACHE = 'menorca-guia-v10';
+const CACHE = 'menorca-guia-v12';
 const APP_SHELL = [
   './',
   './index.html',
